@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror
 NAME = philosopher
 
 SRC = philosopher.c init_args.c ft_atoi.c create_the_list.c \
-	linked_list/add_node.c routine.c \
+	linked_list/add_node.c routine.c calculate_time.c  \
 
 HEADER = philosopher.h
 

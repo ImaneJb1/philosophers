@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/06/29 11:34:40 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/30 19:37:21 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@ void*   routine(void *arg)
 {
     t_philo *philo;
     philo = (t_philo *)arg;
-    eating(philo);
+    while(1)
+    {
+        eating(philo);
+        sleeping(philo);
+    }
     return(NULL);
 }
 
 void    eating(t_philo *philo)
 {
+    printf("%ld %d is thinking\n",get_current_time(), philo->id);
     pthread_mutex_lock((&philo->fork));
     pthread_mutex_lock((&philo->next->fork));
-    printf("%d is eating\n", philo->id);
-    usleep(philo->eat_count);
+    printf("%ld %d has taking a fork\n", get_current_time(),philo->id);
+    printf("%ld %d is eating\n", get_current_time(), philo->id);
+    usleep((*args_func())->time_to_eat * 1000);
+    philo->last_meal = get_current_time();
     pthread_mutex_unlock(&philo->fork);
-    pthread_mutex_unlock(&philo->fork);
+    pthread_mutex_unlock(&philo->next->fork);
 }
-// void    sleeping(void)
-// {
-//     t_args *args;
+void    sleeping(t_philo *philo)
+{
+    t_args *args;
 
-//     args = args_func();
-//     usleep(args->time_to_sleep);
-// }
-
-// void    thinking(void)
-// {
-//      t_args *args;
-
-//     args = args_func();
-//     usleep(args->);
-// }
+    args = *args_func();
+    printf("%ld %d is sleeping\n", get_current_time(), philo->id);
+    ft_sleep(args->time_to_sleep * 1000);
+}

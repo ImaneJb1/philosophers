@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:19:01 by imane             #+#    #+#             */
-/*   Updated: 2025/06/30 13:25:27 by imane            ###   ########.fr       */
+/*   Updated: 2025/06/30 19:12:36 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,4 @@ void    init_args(char **argv)
         (*args)->must_eat_count = ft_atoi(argv[5]);
     else
         (*args)->must_eat_count = -1;
-    
 }
