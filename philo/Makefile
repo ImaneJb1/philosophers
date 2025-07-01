@@ -4,10 +4,11 @@ RM = rm -rf
 
 FLAGS = -Wall -Wextra -Werror
 
-NAME = philosopher
+NAME = philo
 
 SRC = philosopher.c init_args.c ft_atoi.c create_the_list.c \
-	linked_list/add_node.c routine.c calculate_time.c  \
+	linked_list/add_node.c routine.c calculate_time.c  globales.c \
+	routine_utils.c \
 
 HEADER = philosopher.h
 

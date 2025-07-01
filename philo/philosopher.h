@@ -26,23 +26,32 @@ typedef struct s_philo
 	int				id;
 	int				eat_count;
 	long			last_meal;
+	int				death;
 	pthread_t		thread;
 	t_args			*args;
 	pthread_mutex_t	fork;
 	struct s_philo	*next;
 }					t_philo;
 
-long	start_time(void);
-void    ft_sleep(long sleep_time);
-long	get_current_time(void);
-t_args				**args_func(void);
+// 		time funtions
+long				start_time(void);
+long				get_current_time(void);
+
 void				init_args(char **argv);
-void				eating(t_philo *philo);
-void				sleeping(t_philo *philo);
-void				thinking(void);
 void				new_node(t_philo *node);
 int					ft_atoi(const char *str);
-t_philo				**philo_list(void);
-void				*routine(void *arg);
 void				fill_list(char **argv);
+//		globales
+int 				*death(void);
+t_args				**args_func(void);
+t_philo				**philo_list(void);
+
+//		routine
+void    			ft_sleep(long sleep_time);
+void				eating(t_philo *philo);
+void				sleeping(t_philo *philo);
+void				*routine(void *arg);
+
+//		routine utils
+void 				am_i_dead(t_philo *philo);
 #endif

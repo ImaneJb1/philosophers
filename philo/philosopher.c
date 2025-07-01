@@ -3,28 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:06:54 by imane             #+#    #+#             */
-/*   Updated: 2025/06/30 19:31:51 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:49:32 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void    *printsmth(void *arg)
+void    *is_someone_died(void *arg)
 {
+    t_philo *list;
+
     (void)arg;
-    printf("this is a thread\n");
+    list = *philo_list();
+    while(list)
+    {
+        if(list->death == 1)
+        {
+            *death() = 1;
+            printf("%d has died\n", list->id);
+            break;
+        }
+        list = list->next;
+    }
     return(NULL);
 }
-void    ft_sleep(long sleep_time)
+
+void    moniteur(void)
 {
-    while(sleep_time > 0)
-    {
-        usleep(100);
-        sleep_time -= 100;
-    }
+    pthread_t   thread;
+    
+    pthread_create(&thread, NULL, is_someone_died, NULL);
+    pthread_join(thread, NULL);
 }
 
  int main(int argc, char **argv)
@@ -44,12 +56,17 @@ void    ft_sleep(long sleep_time)
     {
         pthread_create((&philos->thread), NULL, routine, philos);
         philos = philos->next;
+        if (philos->next == head)
+            pthread_create((&philos->thread), NULL, routine, philos);
     }
+    moniteur();
     philos = head;
     while(philos->next != head)
     {
-        pthread_join(philos->thread, NULL);
+        pthread_join(philos->thread, NULL); // waiting for each thread to finish
         philos = philos->next;
+        if (philos->next == head)
+            pthread_join(philos->thread, NULL); // waiting for each thread to finish
     }
     return 0;
 }

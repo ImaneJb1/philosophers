@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:19:01 by imane             #+#    #+#             */
-/*   Updated: 2025/06/30 19:12:36 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:20:49 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
-
-t_args    **args_func(void)
-{
-    static t_args *args;
-    return(&args);
-}
 
 void    init_args(char **argv)
 {

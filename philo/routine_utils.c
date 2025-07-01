@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_the_list.c                                  :+:      :+:    :+:   */
+/*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 14:05:00 by imane             #+#    #+#             */
-/*   Updated: 2025/07/01 13:45:57 by imane            ###   ########.fr       */
+/*   Created: 2025/07/01 12:48:08 by imane             #+#    #+#             */
+/*   Updated: 2025/07/01 13:42:35 by imane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void    fill_list(char **argv)
+void    ft_sleep(long sleep_time)
 {
-    t_philo *node;
-    t_args *args;
-    int i;
-    
-    init_args(argv);
-    args = *args_func(); // args is null
-    i = 0;
-    while(i < args->philo_count)
+    while(sleep_time > 0)
     {
-        node = malloc(sizeof(t_philo));
-        if(!node)
+        if(*death() == 1)
             return;
-        node->id = i + 1;
-        node->eat_count = 0;
-        node->death = 0;
-        pthread_mutex_init(&node->fork, NULL);
-        new_node(node);
-        i++;
+        usleep(100);
+        sleep_time -= 100;
     }
-    
+}
+
+void am_i_dead(t_philo *philo)
+{
+    t_args  *args;
+
+    args = *args_func();
+    if((get_current_time() - philo->last_meal) > args->time_to_die)
+        philo->death = 1;
 }
