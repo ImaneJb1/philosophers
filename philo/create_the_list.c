@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_the_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:05:00 by imane             #+#    #+#             */
-/*   Updated: 2025/07/01 13:45:57 by imane            ###   ########.fr       */
+/*   Updated: 2025/07/01 16:28:16 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void    fill_list(char **argv)
         node->id = i + 1;
         node->eat_count = 0;
         node->death = 0;
+        node->last_meal = 0;
         pthread_mutex_init(&node->fork, NULL);
         new_node(node);
         i++;

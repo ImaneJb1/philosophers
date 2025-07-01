@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imane <imane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/01 13:52:17 by imane            ###   ########.fr       */
+/*   Updated: 2025/07/01 18:05:17 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,51 @@
 void*   routine(void *arg)
 {
     t_philo *philo;
+    static int i;
     philo = (t_philo *)arg;
-    while(*death() == 0)
+    while(is_dead() == 0)
     {
+        printf("the i is = %d\n", i);
         eating(philo);
-        sleeping(philo);
+        if(is_dead() == 1)
+        break;
+        sleeping(philo);     
+        // if((*args_func())->must_eat_count > 0)
+        // {
+        //     if(i == (*args_func())->must_eat_count)
+        //         break;
+        //     else
+        //         i++;
+        // }
     }
     return(NULL);
 }
 
 void    eating(t_philo *philo)
 {
-    t_args *args;
-    
-    args = *args_func();
-    if(get_current_time() > args->time_to_die)
-        philo->death = 1;
-    printf("%ld %d is thinking\n",get_current_time(), philo->id);
-    pthread_mutex_lock((&philo->fork));
-    pthread_mutex_lock((&philo->next->fork));
-    printf("%ld %d has taking a fork\n", get_current_time(),philo->id);
-    printf("%ld %d is eating\n", get_current_time(), philo->id);
-    ft_sleep((*args_func())->time_to_eat * 1000);
-    philo->last_meal = get_current_time();
-    am_i_dead(philo);
+    if(is_dead() == 1)
+        return;
+    if(is_dead() == 1)
+        return;
+    print_func(get_current_time(), philo->id, "is thiking");
+    if((&philo->next->fork) < (&philo->fork))
+    {
+        pthread_mutex_lock((&philo->next->fork));
+        pthread_mutex_lock((&philo->fork));
+    }
+    else
+    {
+        pthread_mutex_lock((&philo->fork));
+        pthread_mutex_lock((&philo->next->fork));
+    }
+    if(is_dead() == 0)
+        print_func(get_current_time(), philo->id, "has taking a fork");
+    if(is_dead() == 0)
+        print_func(get_current_time(), philo->id, "is eating");
+    if(is_dead() == 0)
+        usleep((*args_func())->time_to_eat * 1000);
+    if(is_dead() == 0)
+            philo->last_meal = get_current_time();
     pthread_mutex_unlock(&philo->fork);
     pthread_mutex_unlock(&philo->next->fork);
 }
@@ -48,6 +69,10 @@ void    sleeping(t_philo *philo)
     t_args *args;
 
     args = *args_func();
-    printf("%ld %d is sleeping\n", get_current_time(), philo->id);
-    ft_sleep(args->time_to_sleep * 1000);
+    print_func(get_current_time(), philo->id, "is sleeping");
+    if(is_dead() == 1)
+        return;
+    usleep(args->time_to_sleep * 1000);
+    if(is_dead() == 1)
+        return;
 }

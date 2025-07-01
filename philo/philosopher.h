@@ -18,6 +18,8 @@ typedef struct s_args
 	long			start_time;            // idk
 	pthread_mutex_t *forks;     // the lock array
 	pthread_mutex_t write_lock; // idk
+	pthread_mutex_t death_lock; // idk
+
 	int				someone_died;
 }					t_args;
 
@@ -54,4 +56,9 @@ void				*routine(void *arg);
 
 //		routine utils
 void 				am_i_dead(t_philo *philo);
+
+int					is_dead(void);
+
+//		printers
+void				print_func(long time, int id, char *str);
 #endif
