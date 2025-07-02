@@ -1,46 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_utils.c                                    :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 12:48:08 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:43:56 by ijoubair         ###   ########.fr       */
+/*   Created: 2025/07/02 13:51:46 by ijoubair          #+#    #+#             */
+/*   Updated: 2025/07/02 14:44:36 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	is_dead(void)
+void	set_death(void)
 {
-	int	tmp;
-
 	pthread_mutex_lock(&(*args_func())->death_lock);
-	tmp = *death();
+	*death() = 1;
 	pthread_mutex_unlock(&(*args_func())->death_lock);
-	return (tmp);
 }
 
-void	ft_sleep(long sleep_time)
+void	*is_someone_died(void *arg)
 {
-	while (sleep_time > 0)
+	t_philo	*list;
+
+	(void)arg;
+	list = *philo_list();
+	while (list)
 	{
-		if (*death() == 1)
-			return ;
-		usleep(100);
-		sleep_time = sleep_time - 100;
+		if (get_current_time()
+			- get_last_meal(list) > (*args_func())->time_to_die)
+		{
+			set_death();
+			print_func(list->id, "has died");
+			break ;
+		}
+		list = list->next;
 	}
+	return (NULL);
 }
 
-void	am_i_dead(t_philo *philo)
+void	mentor(void)
 {
-	t_args	*args;
+	pthread_t	thread;
 
-	args = *args_func();
-	if ((get_current_time() - philo->last_meal) >= args->time_to_die)
-	{
-		printf("%ld\n", get_current_time() - philo->last_meal);
-		philo->death = 1;
-	}
+	pthread_create(&thread, NULL, is_someone_died, NULL);
+	pthread_join(thread, NULL);
 }
