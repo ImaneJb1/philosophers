@@ -6,11 +6,36 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:05:00 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:46:04 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:47:47 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+void	destroy_mutex_lock(void)
+{
+	t_args  *args;
+	t_philo *philo;
+	t_philo *tmp;
+	int     i;
+	
+	i = 0;
+	args = *args_func();
+	philo = *philo_list();
+	pthread_mutex_destroy(&args->death_lock);
+	pthread_mutex_destroy(&args->write_lock);
+	while (i < args->philo_count)
+	{
+		pthread_mutex_destroy(&philo->fork);
+		pthread_mutex_destroy(&philo->current_time);
+		pthread_mutex_destroy(&philo->last_meal_lock);
+		tmp = philo->next;
+		free(philo);
+		philo = tmp;
+		i++;
+	}
+	free(args);
+	// free(*philo_list());
+}
 
 void	fill_list(char **argv)
 {
@@ -19,7 +44,7 @@ void	fill_list(char **argv)
 	t_args  *args;
 
 	init_args(argv);
-	args = *args_func(); // args is null
+	args = *args_func();
 	i = 0;
 	while (i < args->philo_count)
 	{
@@ -31,6 +56,8 @@ void	fill_list(char **argv)
 		node->death = 0;
 		node->last_meal = 0;
 		pthread_mutex_init(&node->fork, NULL);
+		pthread_mutex_init(&node->current_time, NULL);
+		pthread_mutex_init(&node->last_meal_lock, NULL);
 		new_node(node);
 		i++;
 	}

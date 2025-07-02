@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:06:54 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:03:42 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:51:28 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 	t_philo	*philos;
 	t_philo	*head;
 
-	parsing(argc, argv);
+	if(parsing(argc, argv) < 0)
+		return(1);
 	init_args(argv);
 	fill_list(argv);
 	head = *philo_list();
@@ -46,5 +47,6 @@ int	main(int argc, char **argv)
 	}
 	mentor();
 	waiting_threads(philos);
+	destroy_mutex_lock();
 	return (0);
 }

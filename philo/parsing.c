@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 09:29:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 14:44:33 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:06:29 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ int	check_args(int argc, char **argv)
 	return (0);
 }
 
-void	parsing(int argc, char **argv)
+int	parsing(int argc, char **argv)
 {
-	if (check_args(argc, argv) < 0)
-		exit(0);
+	if (check_args(argc, argv) < 0 || ft_atoi(argv[1]) == 0)
+		return(-1);
+	return(0);
 }

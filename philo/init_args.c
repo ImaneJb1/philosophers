@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:19:01 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:44:40 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:52:12 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void	init_args(char **argv)
 		(*args)->must_eat_count = ft_atoi(argv[5]);
 	else
 		(*args)->must_eat_count = -1;
+	pthread_mutex_init(&(*args)->death_lock, NULL);
+	pthread_mutex_init(&(*args)->write_lock, NULL);
 }
+
