@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:19:01 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 15:52:12 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:57:25 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_args(char **argv)
 	t_args	**args;
 
 	args = args_func();
-	*args = malloc(sizeof(t_args));
+	*args = ft_malloc(sizeof(t_args));
 	if (args == NULL)
 		return ;
 	(*args)->philo_count = ft_atoi(argv[1]);

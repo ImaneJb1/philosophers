@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:05:00 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 15:47:47 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:20:02 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	destroy_mutex_lock(void)
 		pthread_mutex_destroy(&philo->current_time);
 		pthread_mutex_destroy(&philo->last_meal_lock);
 		tmp = philo->next;
-		free(philo);
 		philo = tmp;
 		i++;
 	}
-	free(args);
-	// free(*philo_list());
+	// free(args);
+	// // free(*philo_list());
+	ft_free_all();
 }
 
 void	fill_list(char **argv)
@@ -48,7 +48,7 @@ void	fill_list(char **argv)
 	i = 0;
 	while (i < args->philo_count)
 	{
-		node = malloc(sizeof(t_philo));
+		node = ft_malloc(sizeof(t_philo));
 		if (!node)
 			return ;
 		node->id = i + 1;

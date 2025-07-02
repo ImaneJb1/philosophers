@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:53:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 15:36:53 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 21:38:25 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct s_args
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat_count;
-	long start_time;        
+	long			start_time;
 	pthread_mutex_t	write_lock;
-	pthread_mutex_t death_lock; 
+	pthread_mutex_t	death_lock;
 
 	int				someone_died;
 }					t_args;
@@ -78,7 +78,10 @@ void				print_func(int id, char *str);
 
 //		parsing
 int					check_args(int argc, char **argv);
-int				parsing(int argc, char **argv);
+int					parsing(int argc, char **argv);
 //		monitor
 void				mentor(void);
+//		garbage collector
+void				*ft_malloc(size_t size);
+void				ft_free_all(void);
 #endif
