@@ -33,6 +33,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	t_args			*args;
 	pthread_mutex_t	fork;
+	pthread_mutex_t	current_time;;
 	pthread_mutex_t	last_meal_lock;
 	struct s_philo	*next;
 }					t_philo;
@@ -62,5 +63,5 @@ void 				am_i_dead(t_philo *philo);
 int					is_dead(void);
 
 //		printers
-void				print_func(long time, int id, char *str);
+void				print_func(int id, char *str);
 #endif

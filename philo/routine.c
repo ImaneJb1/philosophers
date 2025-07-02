@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 09:25:49 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:43:51 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,30 @@
 void*   routine(void *arg)
 {
     t_philo *philo;
-    // static int i;
+    int i = 0;
+
     philo = (t_philo *)arg;
-    while(is_dead() == 0)
+    if((*args_func())->must_eat_count >= 0)
     {
-        eating(philo);
-        if(is_dead() == 1)
-        break;
-        sleeping(philo);     
-        // if((*args_func())->must_eat_count > 0)
-        // {
-        //     if(i == (*args_func())->must_eat_count)
-        //         break;
-        //     else
-        //         i++;
-        // }
+        int eat = (*args_func())->must_eat_count;
+        while(i < eat)
+        {
+            eating(philo);
+            sleeping(philo);
+            i++;
+        }
+    }
+    else
+    {
+        while(is_dead() == 0)
+        {
+            eating(philo);
+            if(is_dead() == 1)
+            break;
+            sleeping(philo);     
+        
+        }
+        return(NULL);
     }
     return(NULL);
 }
@@ -48,12 +57,10 @@ void    eating(t_philo *philo)
 {
     if(is_dead() == 1)
         return;
-    if(is_dead() == 1)
-        return;
-    print_func(get_current_time(), philo->id, "is thiking");
-    usleep(1000);
-    if((&philo->next->fork) < (&philo->fork))
+    print_func(philo->id, "is thiking");
+    if(philo->id % 2)
     {
+        usleep(500);
         pthread_mutex_lock((&philo->next->fork));
         pthread_mutex_lock((&philo->fork));
     }
@@ -63,12 +70,14 @@ void    eating(t_philo *philo)
         pthread_mutex_lock((&philo->next->fork));
     }
     if(is_dead() == 0)
-        print_func(get_current_time(), philo->id, "has taking a fork");
+        print_func(philo->id, "has taking a fork");
     if(is_dead() == 0)
-        print_func(get_current_time(), philo->id, "is eating");
+        print_func(philo->id, "is eating");
     if(is_dead() == 0)
+    {
+        update_last_meal(philo);
         usleep((*args_func())->time_to_eat * 1000);
-    update_last_meal(philo);
+    }
     pthread_mutex_unlock(&philo->fork);
     pthread_mutex_unlock(&philo->next->fork);
 }
@@ -78,7 +87,7 @@ void    sleeping(t_philo *philo)
     t_args *args;
 
     args = *args_func();
-    print_func(get_current_time(), philo->id, "is sleeping");
+    print_func(philo->id, "is sleeping");
     if(is_dead() == 1)
         return;
     usleep(args->time_to_sleep * 1000);

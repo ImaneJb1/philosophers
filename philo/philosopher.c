@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:06:54 by imane             #+#    #+#             */
-/*   Updated: 2025/07/01 17:56:58 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:45:06 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void    *is_someone_died(void *arg)
         if(get_current_time() - list->last_meal > (*args_func())->time_to_die)
         {
             set_death();
-            print_func(get_current_time(), list->id, "has died");
+            print_func (list->id, "has died");
             break;
         }
         list = list->next;
@@ -52,7 +52,7 @@ void    moniteur(void)
     t_philo *philos;
     t_philo *head;
 
-    if(argc < 5)
+    if(argc < 5 || argc >= 6)
         return 0;
     init_args(argv);
     fill_list(argv);
