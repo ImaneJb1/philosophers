@@ -17,7 +17,8 @@ typedef struct s_args
 	int				must_eat_count;
 	long			start_time;            // idk
 	pthread_mutex_t *forks;     // the lock array
-	pthread_mutex_t write_lock; // idk
+	pthread_mutex_t write_lock;
+	 // idk
 	pthread_mutex_t death_lock; // idk
 
 	int				someone_died;
@@ -32,6 +33,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	t_args			*args;
 	pthread_mutex_t	fork;
+	pthread_mutex_t	last_meal_lock;
 	struct s_philo	*next;
 }					t_philo;
 

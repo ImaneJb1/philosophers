@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/01 18:05:17 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:25:49 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void*   routine(void *arg)
 {
     t_philo *philo;
-    static int i;
+    // static int i;
     philo = (t_philo *)arg;
     while(is_dead() == 0)
     {
-        printf("the i is = %d\n", i);
         eating(philo);
         if(is_dead() == 1)
         break;
@@ -35,6 +34,16 @@ void*   routine(void *arg)
     return(NULL);
 }
 
+void    update_last_meal(t_philo *philo)
+{
+    if(is_dead() == 0)
+    {
+        pthread_mutex_lock(&philo->last_meal_lock);
+        philo->last_meal = get_current_time();
+        pthread_mutex_unlock(&philo->last_meal_lock);
+    }
+}
+
 void    eating(t_philo *philo)
 {
     if(is_dead() == 1)
@@ -42,6 +51,7 @@ void    eating(t_philo *philo)
     if(is_dead() == 1)
         return;
     print_func(get_current_time(), philo->id, "is thiking");
+    usleep(1000);
     if((&philo->next->fork) < (&philo->fork))
     {
         pthread_mutex_lock((&philo->next->fork));
@@ -58,8 +68,7 @@ void    eating(t_philo *philo)
         print_func(get_current_time(), philo->id, "is eating");
     if(is_dead() == 0)
         usleep((*args_func())->time_to_eat * 1000);
-    if(is_dead() == 0)
-            philo->last_meal = get_current_time();
+    update_last_meal(philo);
     pthread_mutex_unlock(&philo->fork);
     pthread_mutex_unlock(&philo->next->fork);
 }
