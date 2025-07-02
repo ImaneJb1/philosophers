@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 22:06:54 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 21:44:43 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:22:40 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int argc, char **argv)
 	t_philo	*philos;
 	t_philo	*head;
 
-	if(parsing(argc, argv) < 0)
-		return(1);
+	if (parsing(argc, argv) < 0)
+		return (1);
 	fill_list(argv);
 	head = *philo_list();
 	philos = head;

@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:19:01 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 21:57:25 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:22:14 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ void	init_args(char **argv)
 	pthread_mutex_init(&(*args)->death_lock, NULL);
 	pthread_mutex_init(&(*args)->write_lock, NULL);
 }
-

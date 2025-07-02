@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:48:08 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:43:56 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:28:28 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ void	am_i_dead(t_philo *philo)
 		printf("%ld\n", get_current_time() - philo->last_meal);
 		philo->death = 1;
 	}
+}
+
+void	update_last_meal(t_philo *philo)
+{
+	if (is_dead() == 0)
+	{
+		pthread_mutex_lock(&philo->last_meal_lock);
+		philo->last_meal = get_current_time();
+		pthread_mutex_unlock(&philo->last_meal_lock);
+	}
+}
+
+int	get_last_meal(t_philo *philo)
+{
+	long	tmp;
+
+	pthread_mutex_lock(&philo->last_meal_lock);
+	tmp = philo->last_meal;
+	pthread_mutex_unlock(&philo->last_meal_lock);
+	return (tmp);
 }

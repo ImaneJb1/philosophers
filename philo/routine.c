@@ -6,11 +6,26 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:43:52 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:28:39 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+void	must_eat_case(t_philo *philo)
+{
+	int	i;
+	int	eat;
+
+	i = 0;
+	eat = (*args_func())->must_eat_count;
+	while (i < eat)
+	{
+		eating(philo);
+		sleeping(philo);
+		i++;
+	}
+}
 
 void	*routine(void *arg)
 {
@@ -23,12 +38,7 @@ void	*routine(void *arg)
 	if ((*args_func())->must_eat_count >= 0)
 	{
 		eat = (*args_func())->must_eat_count;
-		while (i < eat)
-		{
-			eating(philo);
-			sleeping(philo);
-			i++;
-		}
+		must_eat_case(philo);
 	}
 	else
 	{
@@ -42,26 +52,6 @@ void	*routine(void *arg)
 		return (NULL);
 	}
 	return (NULL);
-}
-
-void	update_last_meal(t_philo *philo)
-{
-	if (is_dead() == 0)
-	{
-		pthread_mutex_lock(&philo->last_meal_lock);
-		philo->last_meal = get_current_time();
-		pthread_mutex_unlock(&philo->last_meal_lock);
-	}
-}
-
-int	get_last_meal(t_philo *philo)
-{
-	long	tmp;
-
-	pthread_mutex_lock(&philo->last_meal_lock);
-	tmp = philo->last_meal;
-	pthread_mutex_unlock(&philo->last_meal_lock);
-	return (tmp);
 }
 
 void	eating(t_philo *philo)

@@ -6,18 +6,19 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:05:00 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 22:20:02 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:21:29 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
 void	destroy_mutex_lock(void)
 {
-	t_args  *args;
-	t_philo *philo;
-	t_philo *tmp;
-	int     i;
-	
+	t_args	*args;
+	t_philo	*philo;
+	t_philo	*tmp;
+	int		i;
+
 	i = 0;
 	args = *args_func();
 	philo = *philo_list();
@@ -32,16 +33,14 @@ void	destroy_mutex_lock(void)
 		philo = tmp;
 		i++;
 	}
-	// free(args);
-	// // free(*philo_list());
 	ft_free_all();
 }
 
 void	fill_list(char **argv)
 {
-	int     i;
-	t_philo *node;
-	t_args  *args;
+	int		i;
+	t_philo	*node;
+	t_args	*args;
 
 	init_args(argv);
 	args = *args_func();

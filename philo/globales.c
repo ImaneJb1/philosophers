@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:20:25 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 14:44:51 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:21:53 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_args	**args_func(void)
 
 int	*death(void)
 {
-	static int death;
+	static int	death;
+
 	return (&death);
 }

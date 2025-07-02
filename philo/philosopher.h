@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:53:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 21:38:25 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:28:06 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void				*routine(void *arg);
 //		routine utils
 void				am_i_dead(t_philo *philo);
 int					get_last_meal(t_philo *philo);
-
+void				update_last_meal(t_philo *philo);
 int					is_dead(void);
 
 //		printers
