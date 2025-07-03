@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:48:08 by imane             #+#    #+#             */
-/*   Updated: 2025/07/02 22:28:28 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:18:54 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ int	is_dead(void)
 	return (tmp);
 }
 
-void	ft_sleep(long sleep_time)
+void	ft_sleep(long time)
 {
-	while (sleep_time > 0)
+	long start;
+	start = get_current_time();
+	while (get_current_time() - start < time)
 	{
+		// printf("%ld\n", get_current_time() - start);
 		if (*death() == 1)
 			return ;
 		usleep(100);
-		sleep_time = sleep_time - 100;
 	}
 }
 

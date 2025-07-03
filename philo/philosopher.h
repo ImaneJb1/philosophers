@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:53:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 22:28:06 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:57:27 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_args				**args_func(void);
 t_philo				**philo_list(void);
 
 //		routine
-void				ft_sleep(long sleep_time);
+void				ft_sleep(long time);
 void				eating(t_philo *philo);
 void				sleeping(t_philo *philo);
 void				*routine(void *arg);
