@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 21:26:39 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 22:34:29 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:44:52 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_malloc(size_t size)
 	if (*block_mem() == NULL)
 	{
 		perror("malloc failed");
-		return(NULL);
+		return (NULL);
 	}
 	block = *block_mem();
 	block = block + offset;

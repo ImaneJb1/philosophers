@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/03 17:41:41 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:44:04 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	*routine(void *arg)
 
 	i = 0;
 	philo = (t_philo *)arg;
-	// if (philo->id % 2 != 0 && (*args_func())->philo_count % 2 != 0)
-	// 	usleep(500);
 	if ((*args_func())->must_eat_count >= 0)
 	{
 		eat = (*args_func())->must_eat_count;
@@ -56,14 +54,14 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	mutex_forks(pthread_mutex_t *fork1,pthread_mutex_t *fork2, int flag)
+void	mutex_forks(pthread_mutex_t *fork1, pthread_mutex_t *fork2, int flag)
 {
-	if(flag == 1)
+	if (flag == 1)
 	{
 		pthread_mutex_lock(fork1);
 		pthread_mutex_lock(fork2);
 	}
-	if(flag == 2)
+	if (flag == 2)
 	{
 		pthread_mutex_unlock(fork1);
 		pthread_mutex_unlock(fork2);
