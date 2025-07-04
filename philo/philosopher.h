@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:53:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/04 19:47:44 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:50:48 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int					check_args(int argc, char **argv);
 int					parsing(int argc, char **argv);
 //		monitor
 void				mentor(void);
-int					get_meals_eaten();
+int					get_meals_eaten(void);
 int					stop_simulation(void);
 //		garbage collector
 void				*ft_malloc(size_t size);

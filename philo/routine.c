@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 17:05:55 by imane             #+#    #+#             */
-/*   Updated: 2025/07/04 20:00:42 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:50:54 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,24 @@
 void	must_eat_case(t_philo *philo)
 {
 	int	eat;
-	int total_meals;
-	
+	int	total_meals;
+
 	eat = (*args_func())->must_eat_count;
 	total_meals = (*args_func())->philo_count * (*args_func())->must_eat_count;
 	while (stop_simulation() == 0)
 	{
+		if (stop_simulation())
+			break ;
 		eating(philo);
 		inc_meals_eaten();
 		if (stop_simulation())
 			break ;
 		sleeping(philo);
-		usleep(100);
+		if (stop_simulation())
+			break ;
+		usleep(50);
+		if (stop_simulation())
+			break ;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:20:25 by imane             #+#    #+#             */
-/*   Updated: 2025/07/04 19:29:13 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:50:42 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	*death(void)
 
 int	*meals_eaten(void)
 {
-	static int meals;
+	static int	meals;
 
 	return (&meals);
 }
