@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 09:29:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/02 22:28:48 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 22:49:49 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_args(int argc, char **argv)
 	int	i;
 
 	i = 0;
-	if (argc < 5 || argc > 5)
+	if (argc < 5 || argc > 6)
 		return (-1);
 	while (argv[i])
 	{

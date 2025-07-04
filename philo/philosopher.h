@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:53:10 by ijoubair          #+#    #+#             */
-/*   Updated: 2025/07/03 16:57:27 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:47:44 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_args
 	int				must_eat_count;
 	long			start_time;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	meals_eaten_lock;
+	pthread_mutex_t	done_eating_lock;
 	pthread_mutex_t	death_lock;
 
 	int				someone_died;
@@ -59,6 +61,7 @@ void				destroy_mutex_lock(void);
 //		globales
 int					*death(void);
 t_args				**args_func(void);
+int					*meals_eaten(void);
 t_philo				**philo_list(void);
 
 //		routine
@@ -71,6 +74,7 @@ void				*routine(void *arg);
 void				am_i_dead(t_philo *philo);
 int					get_last_meal(t_philo *philo);
 void				update_last_meal(t_philo *philo);
+void				inc_meals_eaten(void);
 int					is_dead(void);
 
 //		printers
@@ -81,6 +85,8 @@ int					check_args(int argc, char **argv);
 int					parsing(int argc, char **argv);
 //		monitor
 void				mentor(void);
+int					get_meals_eaten();
+int					stop_simulation(void);
 //		garbage collector
 void				*ft_malloc(size_t size);
 void				ft_free_all(void);

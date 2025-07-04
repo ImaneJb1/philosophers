@@ -6,7 +6,7 @@
 /*   By: ijoubair <ijoubair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:48:08 by imane             #+#    #+#             */
-/*   Updated: 2025/07/03 17:45:04 by ijoubair         ###   ########.fr       */
+/*   Updated: 2025/07/03 22:23:29 by ijoubair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_sleep(long time)
 	start = get_current_time();
 	while (get_current_time() - start < time)
 	{
-		if (*death() == 1)
+		if (is_dead() == 1)
 			return ;
 		usleep(100);
 	}
